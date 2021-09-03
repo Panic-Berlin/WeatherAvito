@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/PC/AndroidStudioProjects/WeatherAvito/app/src/main/res/drawable/city_gradient_background.xml" value="0.2703125" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/WeatherAvito/app/src/main/res/drawable/days_item_background.xml" value="0.2703125" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/WeatherAvito/app/src/main/res/drawable/ic_temperature_box_background.xml" value="0.2703125" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/WeatherAvito/app/src/main/res/drawable/ic_temperature_layout_background.xml" value="0.2703125" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/WeatherAvito/app/src/main/res/drawable/layout_background.xml" value="0.2703125" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/WeatherAvito/app/src/main/res/drawable/toolbar_background.xml" value="0.2703125" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/WeatherAvito/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/WeatherAvito/app/src/main/res/layout/five_days_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/WeatherAvito/app/src/main/res/layout/fragment_temperature.xml" value="0.37948717948717947" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/WeatherAvito/app/src/main/res/layout/fragment_top_cities.xml" value="0.264" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/WeatherAvito/app/src/main/res/layout/top_cities_fragment.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/WeatherAvito/app/src/main/res/layout/top_cities_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/WeatherAvito/app/src/main/res/layout/weather_navigation.xml" value="0.25416666666666665" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

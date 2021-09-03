@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/weather_navigation"
+    app:startDestination="@id/topCitiesFragment">
+
+    <fragment
+        android:id="@+id/topCitiesFragment"
+        android:name="com.example.weatheravito.features.cities.presentation.TopCitiesFragment"
+        android:label="TopCitiesFragment"
+        tools:layout="@layout/fragment_top_cities">
+        <action
+            android:id="@+id/action_topCitiesFragment_to_temperatureFragment"
+            app:destination="@id/temperatureFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/temperatureFragment"
+        android:name="com.example.weatheravito.features.temperature.presentation.TemperatureFragment"
+        android:label="TemperatureFragment"
+        tools:layout="@layout/fragment_temperature"/>
+</navigation>

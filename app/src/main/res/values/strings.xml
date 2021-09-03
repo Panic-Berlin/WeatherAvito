@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">WeatherAvito</string>
+    <string name="top_cities">Топ городов</string>
+    <string name="search">Поиск</string>
+    <string name="wind">Wind</string>
+    <string name="humidity">Humidity</string>
+    <string name="days">Days</string>
+</resources>
