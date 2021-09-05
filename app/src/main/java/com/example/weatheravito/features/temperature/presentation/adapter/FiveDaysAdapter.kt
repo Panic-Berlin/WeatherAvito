@@ -1,5 +1,6 @@
 package com.example.weatheravito.features.temperature.presentation.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,8 +34,9 @@ class FiveDaysAdapter(
     class FiveDaysViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val viewBinding: FiveDaysItemBinding by viewBinding(FiveDaysItemBinding::bind)
 
+        @SuppressLint("SetTextI18n")
         fun bind(temp: DailyForecasts) {
-            viewBinding.dayMax.text = temp.temperature.maximum.valueInC.toString()
+            viewBinding.dayMax.text = "${temp.temperature.maximum.valueInC.toString()}°"
         }
     }
 }

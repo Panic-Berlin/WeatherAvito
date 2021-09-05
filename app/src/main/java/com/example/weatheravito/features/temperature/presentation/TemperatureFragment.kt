@@ -1,5 +1,6 @@
 package com.example.weatheravito.features.temperature.presentation
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.widget.HorizontalScrollView
@@ -32,12 +33,13 @@ class TemperatureFragment : Fragment(R.layout.fragment_temperature) {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private fun getDailyWeather(key: String, city: String) {
         viewModel.getDailyWeather(key)
         viewBinding.city.text = city
         viewModel.weatherDaily.observe(viewLifecycleOwner, {
             viewBinding.temperature.text =
-                it.dailyForecasts.firstOrNull()?.temperature?.maximum?.valueInC.toString()
+                "${it.dailyForecasts.firstOrNull()?.temperature?.maximum?.valueInC.toString()} °C"
             viewBinding.status.text = it.dailyForecasts.firstOrNull()?.day?.iconPhrase
         })
 
