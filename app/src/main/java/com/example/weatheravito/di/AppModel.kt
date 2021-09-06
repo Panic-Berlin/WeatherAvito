@@ -1,15 +1,20 @@
 package com.example.weatheravito.di
 
+import android.content.Context
 import com.example.weatheravito.features.temperature.data.adapter.LocalDateTimeAdapter
+import com.example.weatheravito.features.temperature.di.CacheInterceptor
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.io.File
 import javax.inject.Singleton
 
 @Module
@@ -18,13 +23,20 @@ class AppModel {
 
     @Singleton
     @Provides
-    fun provideOkHttp(): OkHttpClient = OkHttpClient.Builder()
-        .apply {
-            addInterceptor(HttpLoggingInterceptor().apply {
-                level = HttpLoggingInterceptor.Level.BODY
+    fun provideOkHttp(@ApplicationContext applicationContext: Context): OkHttpClient =
+        OkHttpClient.Builder()
+            .apply {
+                addInterceptor(HttpLoggingInterceptor().apply {
+                    level = HttpLoggingInterceptor.Level.BODY
+                })
+            }
+            .addNetworkInterceptor(CacheInterceptor())
+            .cache(applicationContext.let {
+                val httpCacheDirectory = File(it.cacheDir, "http-cache")
+                val cacheSize: Long = 10 * 1024 * 1024 // 10 MiB
+                Cache(httpCacheDirectory, cacheSize)
             })
-        }
-        .build()
+            .build()
 
     @Singleton
     @Provides

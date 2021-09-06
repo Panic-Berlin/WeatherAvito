@@ -17,6 +17,10 @@ class TemperatureViewModel @Inject constructor(
 
     private val _weatherDaily = MutableLiveData<ShortTemperature>()
     val weatherDaily get() = _weatherDaily.asLiveData()
+
+    private val _isLoading = MutableLiveData(true)
+    val isLoading = _isLoading.asLiveData()
+
     private val _weatherFiveDay = MutableLiveData<ShortTemperature>()
     val weatherFiveDay get() = _weatherFiveDay.asLiveData()
 

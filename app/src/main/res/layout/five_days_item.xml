@@ -1,52 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="85dp"
-    android:background="@drawable/days_item_background"
-    android:layout_height="150dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginTop="10dp"
-    android:layout_marginStart="25dp"
-    android:translationZ="10dp"
-    android:id="@+id/five_day_item">
+    android:id="@+id/five_day_item"
+    android:layout_width="85dp"
+    android:layout_height="150dp"
+    android:elevation="10dp"
+    android:background="@drawable/days_item_background">
 
     <TextView
-        android:layout_marginTop="10dp"
         android:id="@+id/weak_day"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="M"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/lato"
+        android:textSize="22sp"
         android:textStyle="bold"
-        android:textSize="22sp"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="M" />
+
     <ImageView
         android:id="@+id/weather_icon"
-        app:layout_constraintTop_toBottomOf="@id/weak_day"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        tools:src="@drawable/ic_rain"
-        android:layout_width="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_height="50dp"
-        />
+        app:layout_constraintTop_toBottomOf="@id/weak_day"
+        tools:src="@drawable/ic_rain" />
 
     <TextView
+        android:id="@+id/dayMax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/weather_icon"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         android:fontFamily="@font/lato"
         android:textColor="@color/lite_black"
         android:textSize="22sp"
-        android:id="@+id/dayMax"
         android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="32°"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/weather_icon"
+        tools:text="32°" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
