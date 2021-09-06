@@ -70,8 +70,8 @@
                 android:layout_height="20dp"
                 app:layout_constraintTop_toTopOf="@id/tv_wind"
                 app:layout_constraintRight_toLeftOf="@id/tv_wind"
-                android:layout_marginRight="5dp"
-                android:src="@drawable/ic_wind"/>
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/ic_wind_speed"/>
 
             <TextView
                 android:id="@+id/tv_wind"
@@ -83,7 +83,7 @@
                 android:textSize="16sp"
                 android:textColor="@color/lite_white"
                 android:textStyle="bold"
-                android:layout_marginRight="25dp"
+                android:layout_marginEnd="35dp"
                 android:layout_marginTop="10dp"/>
 
             <TextView
@@ -131,11 +131,12 @@
         android:textSize="28sp"/>
 
     <ImageView
+        android:id="@+id/weather_status_icon"
         android:translationZ="12dp"
         app:layout_constraintTop_toBottomOf="@id/city"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:src="@drawable/ic_rain"
+        tools:src="@drawable/ic_rain"
         android:layout_width="130dp"
         android:layout_height="130dp" />
 
@@ -145,11 +146,13 @@
     <TextView
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:id="@+id/status"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
         android:textSize="24sp"
         tools:text="Ясно"
         android:textStyle="bold"
@@ -162,7 +165,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/status"
         app:layout_constraintLeft_toLeftOf="@id/status"
-        android:text="Пятница 16:25"
+        tools:text="Пятница 16:25"
         android:textSize="18sp"
         android:fontFamily="@font/lato"/>
 
@@ -181,6 +184,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginBottom="20dp"
         android:id="@+id/five_day_RV"
         android:layout_width="match_parent"
         android:layout_height="0dp"

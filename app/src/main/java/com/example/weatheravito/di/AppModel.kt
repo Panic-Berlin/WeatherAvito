@@ -1,5 +1,6 @@
 package com.example.weatheravito.di
 
+import com.example.weatheravito.features.temperature.data.adapter.LocalDateTimeAdapter
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -27,7 +28,9 @@ class AppModel {
 
     @Singleton
     @Provides
-    fun provideMoshi(): Moshi = Moshi.Builder().build()
+    fun provideMoshi(): Moshi = Moshi.Builder()
+        .add(LocalDateTimeAdapter())
+        .build()
 
     @Singleton
     @Provides

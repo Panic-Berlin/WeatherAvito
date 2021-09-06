@@ -6,6 +6,8 @@ import javax.inject.Inject
 
 class HeadlineMapper @Inject constructor() {
     fun map(headlineRes: HeadlineRes) = Headline(
-        text = headlineRes.text
+        text = headlineRes.text,
+        effectiveDate = headlineRes.effectiveDate,
+        category = headlineRes.category.orEmpty()
     )
 }

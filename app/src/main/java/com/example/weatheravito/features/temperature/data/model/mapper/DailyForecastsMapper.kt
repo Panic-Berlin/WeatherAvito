@@ -12,6 +12,7 @@ class DailyForecastsMapper @Inject constructor(
     fun map(dailyForecastsRes: DailyForecastsRes) = DailyForecasts(
         temperature = dailyForecastsRes.temperature.let { temperatureMapper.map(it) },
         day = dailyForecastsRes.day.let { dayMapper.map(it) },
-        night = dailyForecastsRes.night.let { nightMapper.map(it) }
+        night = dailyForecastsRes.night.let { nightMapper.map(it) },
+        date = dailyForecastsRes.date
     )
 }

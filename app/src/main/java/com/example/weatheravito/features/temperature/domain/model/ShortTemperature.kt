@@ -1,7 +1,7 @@
 package com.example.weatheravito.features.temperature.domain.model
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import org.joda.time.DateTime
+import java.util.*
 
 data class ShortTemperature(
     val headline: Headline,
@@ -9,13 +9,16 @@ data class ShortTemperature(
 )
 
 class Headline(
-    val text: String
+    val effectiveDate: DateTime,
+    val text: String,
+    val category: String
 )
 
 class DailyForecasts(
     val temperature: Temperature,
     val day: Day,
-    val night: Night
+    val night: Night,
+    val date: DateTime
 )
 
 class Temperature(
@@ -40,7 +43,8 @@ class Maximum(
 }
 
 class Day(
-    val iconPhrase: String
+    val iconPhrase: String,
+    val precipitationType: String
 )
 
 class Night(

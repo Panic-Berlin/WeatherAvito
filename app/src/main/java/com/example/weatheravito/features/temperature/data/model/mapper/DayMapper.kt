@@ -6,6 +6,7 @@ import javax.inject.Inject
 
 class DayMapper @Inject constructor() {
     fun map(dayRes: DayRes) = Day(
-        iconPhrase = dayRes.iconPhrase
+        iconPhrase = dayRes.iconPhrase,
+        precipitationType = dayRes.precipitationType.orEmpty()
     )
 }

@@ -2,6 +2,8 @@ package com.example.weatheravito.features.temperature.data.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import org.joda.time.DateTime
+import org.joda.time.LocalDateTime
 
 @JsonClass(generateAdapter = true)
 data class TemperatureResponse(
@@ -13,8 +15,12 @@ data class TemperatureResponse(
 
 @JsonClass(generateAdapter = true)
 class HeadlineRes(
+    @Json(name = "EffectiveDate")
+    val effectiveDate: DateTime,
     @Json(name = "Text")
-    val text: String
+    val text: String,
+    @Json(name = "Category")
+    val category: String?
 )
 
 @JsonClass(generateAdapter = true)
@@ -24,7 +30,9 @@ class DailyForecastsRes(
     @Json(name = "Day")
     val day: DayRes,
     @Json(name = "Night")
-    val night: NightRes
+    val night: NightRes,
+    @Json(name = "Date")
+    val date: DateTime
 )
 
 @JsonClass(generateAdapter = true)
@@ -54,7 +62,9 @@ class MaximumRes(
 @JsonClass(generateAdapter = true)
 class DayRes(
     @Json(name = "IconPhrase")
-    val iconPhrase: String
+    val iconPhrase: String,
+    @Json(name = "PrecipitationType")
+    val precipitationType: String?
 )
 
 @JsonClass(generateAdapter = true)

@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-private const val KEY = "q39gcvaAwbv30YjYAAG91qzmhCCZ1zPK"
+private const val KEY = "w5vIvuGCGaORlx5myVMEkcJxkBAGBdjy"
 
 interface CityApi {
     @GET("locations/v1/cities/autocomplete?language=ru-ru")

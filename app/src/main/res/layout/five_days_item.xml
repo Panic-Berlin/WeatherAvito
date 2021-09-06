@@ -7,7 +7,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginTop="10dp"
     android:layout_marginStart="25dp"
-    android:translationZ="10dp">
+    android:translationZ="10dp"
+    android:id="@+id/five_day_item">
 
     <TextView
         android:layout_marginTop="10dp"
@@ -17,7 +18,7 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="M"
+        tools:text="M"
         android:fontFamily="@font/lato"
         android:textStyle="bold"
         android:textSize="22sp"/>
@@ -26,10 +27,11 @@
         app:layout_constraintTop_toBottomOf="@id/weak_day"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:src="@drawable/ic_rain"
+        tools:src="@drawable/ic_rain"
         android:layout_width="50dp"
         android:layout_marginTop="10dp"
-        android:layout_height="50dp"/>
+        android:layout_height="50dp"
+        />
 
     <TextView
         android:layout_marginStart="5dp"
@@ -41,6 +43,7 @@
         android:textColor="@color/lite_black"
         android:textSize="22sp"
         android:id="@+id/dayMax"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="32°"/>
