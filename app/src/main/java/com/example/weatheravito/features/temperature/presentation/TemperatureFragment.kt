@@ -35,17 +35,16 @@ class TemperatureFragment : Fragment(R.layout.fragment_temperature) {
             )
         )
         (arguments?.getSerializable("key") as ShortCity).let { city ->
-            getDailyWeather(city.key, city.localizedName)
-            getFiveDaysWeather(city.key)
+            getDailyWeather(city.localizedName)
+            getFiveDaysWeather()
+            viewModel.onArgsReceived(city.key)
 
         }
 
 
     }
 
-    private fun getDailyWeather(key: String, city: String) {
-
-        viewModel.getDailyWeather(key)
+    private fun getDailyWeather(city: String) {
         viewBinding.city.text = city
         viewModel.isLoading.observe(viewLifecycleOwner) {
             viewBinding.tempLoading.isVisible = it
@@ -70,11 +69,10 @@ class TemperatureFragment : Fragment(R.layout.fragment_temperature) {
 
     }
 
-    private fun getFiveDaysWeather(key: String) {
+    private fun getFiveDaysWeather() {
         val fiveDaysRecyclerView = viewBinding.fiveDayRV
         fiveDaysRecyclerView.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        viewModel.getFiveDaiWeather(key)
         viewModel.weatherFiveDay.observe(viewLifecycleOwner, {
             val dailyAdapter = FiveDaysAdapter(it)
             fiveDaysRecyclerView.adapter = dailyAdapter

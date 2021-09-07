@@ -1,5 +1,6 @@
 package com.example.weatheravito.features.temperature.domain
 
+import android.util.Log
 import com.example.weatheravito.features.temperature.data.TemperatureRepo
 import com.example.weatheravito.features.temperature.domain.model.ShortTemperature
 import retrofit2.HttpException
@@ -12,7 +13,7 @@ class TemperatureInteractor @Inject constructor(
         return try{
             temperatureRepo.getDaily(key)
         }catch (exception: HttpException){
-            exception.code()
+            Log.d("HttpConnectionError", exception.code().toString())
             null
         }
     }
@@ -21,7 +22,7 @@ class TemperatureInteractor @Inject constructor(
         return try {
             temperatureRepo.getFiveDay(key)
         }catch (exception: HttpException){
-            exception.code()
+            Log.d("HttpConnectionError", exception.code().toString())
             null
         }
     }
