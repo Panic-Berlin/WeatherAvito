@@ -7,4 +7,5 @@
     <string name="days">Дни</string>
     <string name="no_internet_connection">Нет поключения к интернету</string>
     <string name="blank_city">Ничего не найдено</string>
+    <string name="temperature_in_c">%d °C</string>
 </resources>

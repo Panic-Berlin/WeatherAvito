@@ -5,6 +5,8 @@
     android:id="@+id/five_day_item"
     android:layout_width="85dp"
     android:layout_height="150dp"
+    tools:layout_marginStart="10dp"
+    tools:layout_marginEnd="10dp"
     android:elevation="10dp"
     android:background="@drawable/days_item_background">
 

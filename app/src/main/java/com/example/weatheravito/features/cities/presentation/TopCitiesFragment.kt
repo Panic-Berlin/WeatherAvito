@@ -13,8 +13,8 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.weatheravito.R
 import com.example.weatheravito.databinding.FragmentTopCitiesBinding
 import com.example.weatheravito.features.cities.presentation.adapter.CitiesAdapter
+import com.example.weatheravito.utils.ViewState
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.IOException
 
 @AndroidEntryPoint
 class TopCitiesFragment : Fragment(R.layout.fragment_top_cities) {
@@ -25,8 +25,15 @@ class TopCitiesFragment : Fragment(R.layout.fragment_top_cities) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getTopCities()
+        observeTopCities()
         init()
+        viewBinding.topCitiesRV.addItemDecoration(
+            TopCityItemDecoration(
+                requireContext(),
+                R.dimen.city_left_and_right_margin,
+                R.dimen.city_top_and_bottom_margin
+            )
+        )
 
     }
 
@@ -45,28 +52,28 @@ class TopCitiesFragment : Fragment(R.layout.fragment_top_cities) {
         viewBinding.etSearch.doAfterTextChanged {
             if (viewBinding.etSearch.text.isNotEmpty()) {
                 cityViewModel.onSearchQueryChanged(it.toString())
-                getSearchList()
+                observeSearchCity()
             }
-
-
         }
 
         viewBinding.searchToolBar.setOnClickListener {
+            viewBinding.etSearch.text.clear()
             viewBinding.searchToolBar.visibility = View.GONE
             viewBinding.cityToolbar.visibility = View.VISIBLE
-            getTopCities()
+            observeTopCities()
         }
     }
 
-    private fun getTopCities() {
-        try {
-            val topRecyclerView = viewBinding.topCitiesRV
-            topRecyclerView.layoutManager = LinearLayoutManager(activity)
-            cityViewModel.isLoading.observe(viewLifecycleOwner) {
-                viewBinding.cityLoading.isVisible = it
-            }
-            cityViewModel.cities.observe(viewLifecycleOwner, {
-                val cityAdapter = CitiesAdapter(it) {
+    private fun observeTopCities() {
+        val topRecyclerView = viewBinding.topCitiesRV
+        topRecyclerView.layoutManager = LinearLayoutManager(activity)
+        cityViewModel.isLoading.observe(viewLifecycleOwner) {
+            viewBinding.cityLoading.isVisible = it
+        }
+        cityViewModel.cities.observe(viewLifecycleOwner, { viewState ->
+            viewBinding.tvCityError.isVisible = viewState !is ViewState.Show
+            if (viewState is ViewState.Show) {
+                val cityAdapter = CitiesAdapter(viewState.data) {
                     findNavController().navigate(
                         R.id.action_topCitiesFragment_to_temperatureFragment, bundleOf(
                             "key" to it
@@ -74,24 +81,18 @@ class TopCitiesFragment : Fragment(R.layout.fragment_top_cities) {
                     )
                 }
                 topRecyclerView.adapter = cityAdapter
-            })
-        } catch (exception: IOException) {
-            viewBinding.tvCityError.visibility = View.VISIBLE
-        }
-
-    }
-
-    private fun getSearchList() {
-        try {
-            val searchRecyclerView = viewBinding.topCitiesRV
-            searchRecyclerView.layoutManager = LinearLayoutManager(activity)
-            cityViewModel.isLoading.observe(viewLifecycleOwner) {
-                viewBinding.cityLoading.isVisible = it
             }
-
-            cityViewModel.search.observe(viewLifecycleOwner, {
-                viewBinding.tvCityError.visibility = View.GONE
-                val searchAdapter = CitiesAdapter(it) {
+        })
+    }
+    private fun observeSearchCity(){
+        val searchRecyclerView = viewBinding.topCitiesRV
+        searchRecyclerView.layoutManager = LinearLayoutManager(activity)
+        cityViewModel.isLoading.observe(viewLifecycleOwner){
+            viewBinding.cityLoading.isVisible = it
+        }
+        cityViewModel.search.observe(viewLifecycleOwner, {viewState ->
+            if (viewState is ViewState.Show){
+                val searchAdapter = CitiesAdapter(viewState.data){
                     findNavController().navigate(
                         R.id.action_topCitiesFragment_to_temperatureFragment, bundleOf(
                             "key" to it
@@ -99,11 +100,7 @@ class TopCitiesFragment : Fragment(R.layout.fragment_top_cities) {
                     )
                 }
                 searchRecyclerView.adapter = searchAdapter
-            })
-        }
-        catch (exception: IOException){
-
-        }
-
+            }
+        })
     }
 }

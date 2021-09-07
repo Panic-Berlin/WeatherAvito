@@ -5,7 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weatheravito.features.cities.domain.CitiesInteractor
 import com.example.weatheravito.features.cities.domain.model.ShortCity
+import com.example.weatheravito.utils.ViewState
 import com.example.weatheravito.utils.asLiveData
+import com.example.weatheravito.utils.asViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,8 +17,8 @@ class TopCitiesViewModel @Inject constructor(
     private val citiesInteractor: CitiesInteractor
 ) : ViewModel() {
 
-    private val _cities = MutableLiveData<List<ShortCity>>()
-    private val _search = MutableLiveData<List<ShortCity>>()
+    private val _cities = MutableLiveData<ViewState<List<ShortCity>>>()
+    private val _search = MutableLiveData<ViewState<List<ShortCity>>>()
     private val _isLoading = MutableLiveData(true)
     val isLoading = _isLoading.asLiveData()
     val cities get() = _cities.asLiveData()
@@ -26,7 +28,7 @@ class TopCitiesViewModel @Inject constructor(
         _isLoading.value = true
         viewModelScope.launch {
             val topCities = citiesInteractor.getCity()
-            _cities.value = topCities
+            _cities.value = topCities.asViewState()
             _isLoading.value = false
         }
     }
@@ -35,7 +37,7 @@ class TopCitiesViewModel @Inject constructor(
         indicator.value = true
         viewModelScope.launch {
             val searchCity = citiesInteractor.getSearchList(query)
-            _search.value = searchCity
+            _search.value = searchCity.asViewState()
             indicator.value = false
         }
     }

@@ -1,4 +1,4 @@
-package com.example.weatheravito.features.temperature.presentation
+package com.example.weatheravito.features.cities.presentation
 
 import android.content.Context
 import android.graphics.Rect
@@ -6,15 +6,14 @@ import android.view.View
 import androidx.annotation.DimenRes
 import androidx.recyclerview.widget.RecyclerView
 
-class DayWeatherItemDecoration(
+class TopCityItemDecoration(
     context: Context,
     @DimenRes leftAndRightSpacing: Int,
     @DimenRes topAndBottomSpacing: Int,
-    @DimenRes bottomSpacing: Int
 ) : RecyclerView.ItemDecoration() {
+
     private val leftAndRightSpacing = context.resources.getDimensionPixelSize(leftAndRightSpacing)
     private val topAndBottomSpacing = context.resources.getDimensionPixelSize(topAndBottomSpacing)
-    private val bottomSpacing = context.resources.getDimensionPixelSize(bottomSpacing)
 
     override fun getItemOffsets(
         outRect: Rect,
@@ -23,14 +22,8 @@ class DayWeatherItemDecoration(
         state: RecyclerView.State
     ) {
         super.getItemOffsets(outRect, view, parent, state)
-
-        val viewHolder = parent.getChildViewHolder(view)
-        if (viewHolder.layoutPosition == 0) {
-            outRect.left = leftAndRightSpacing
-        }
         outRect.top = topAndBottomSpacing
-        outRect.bottom = bottomSpacing
+        outRect.left = leftAndRightSpacing
         outRect.right = leftAndRightSpacing
-
     }
 }
