@@ -3,6 +3,7 @@ package com.example.weatheravito.features.cities.presentation
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -13,6 +14,7 @@ import com.example.weatheravito.R
 import com.example.weatheravito.databinding.FragmentTopCitiesBinding
 import com.example.weatheravito.features.cities.presentation.adapter.CitiesAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.IOException
 
 @AndroidEntryPoint
 class TopCitiesFragment : Fragment(R.layout.fragment_top_cities) {
@@ -46,6 +48,7 @@ class TopCitiesFragment : Fragment(R.layout.fragment_top_cities) {
                 getSearchList()
             }
 
+
         }
 
         viewBinding.searchToolBar.setOnClickListener {
@@ -56,34 +59,51 @@ class TopCitiesFragment : Fragment(R.layout.fragment_top_cities) {
     }
 
     private fun getTopCities() {
-        val topRecyclerView = viewBinding.topCitiesRV
-        topRecyclerView.layoutManager = LinearLayoutManager(activity)
-
-        cityViewModel.cities.observe(viewLifecycleOwner, {
-            val cityAdapter = CitiesAdapter(it) {
-                findNavController().navigate(
-                    R.id.action_topCitiesFragment_to_temperatureFragment, bundleOf(
-                        "key" to it
-                    )
-                )
+        try {
+            val topRecyclerView = viewBinding.topCitiesRV
+            topRecyclerView.layoutManager = LinearLayoutManager(activity)
+            cityViewModel.isLoading.observe(viewLifecycleOwner) {
+                viewBinding.cityLoading.isVisible = it
             }
-            topRecyclerView.adapter = cityAdapter
-        })
+            cityViewModel.cities.observe(viewLifecycleOwner, {
+                val cityAdapter = CitiesAdapter(it) {
+                    findNavController().navigate(
+                        R.id.action_topCitiesFragment_to_temperatureFragment, bundleOf(
+                            "key" to it
+                        )
+                    )
+                }
+                topRecyclerView.adapter = cityAdapter
+            })
+        } catch (exception: IOException) {
+            viewBinding.tvCityError.visibility = View.VISIBLE
+        }
+
     }
 
     private fun getSearchList() {
-        val searchRecyclerView = viewBinding.topCitiesRV
-        searchRecyclerView.layoutManager = LinearLayoutManager(activity)
-
-        cityViewModel.search.observe(viewLifecycleOwner, {
-            val searchAdapter = CitiesAdapter(it) {
-                findNavController().navigate(
-                    R.id.action_topCitiesFragment_to_temperatureFragment, bundleOf(
-                        "key" to it
-                    )
-                )
+        try {
+            val searchRecyclerView = viewBinding.topCitiesRV
+            searchRecyclerView.layoutManager = LinearLayoutManager(activity)
+            cityViewModel.isLoading.observe(viewLifecycleOwner) {
+                viewBinding.cityLoading.isVisible = it
             }
-            searchRecyclerView.adapter = searchAdapter
-        })
+
+            cityViewModel.search.observe(viewLifecycleOwner, {
+                viewBinding.tvCityError.visibility = View.GONE
+                val searchAdapter = CitiesAdapter(it) {
+                    findNavController().navigate(
+                        R.id.action_topCitiesFragment_to_temperatureFragment, bundleOf(
+                            "key" to it
+                        )
+                    )
+                }
+                searchRecyclerView.adapter = searchAdapter
+            })
+        }
+        catch (exception: IOException){
+
+        }
+
     }
 }

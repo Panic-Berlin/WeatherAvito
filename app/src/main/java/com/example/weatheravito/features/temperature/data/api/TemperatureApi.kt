@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-private const val KEY = "O6OsWZoZuJ8oqxQ6vNZm6ykTCAYV6WHT"
+private const val KEY = "GEwt65US7sbGh21KILwgo36AGGke5WnN"
 
 interface TemperatureApi {
 

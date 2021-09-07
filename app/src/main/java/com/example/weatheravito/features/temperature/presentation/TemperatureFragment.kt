@@ -1,6 +1,7 @@
 package com.example.weatheravito.features.temperature.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import com.example.weatheravito.features.cities.domain.model.ShortCity
 import com.example.weatheravito.features.temperature.presentation.adapter.FiveDaysAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import org.joda.time.format.DateTimeFormat
+import java.io.IOException
 
 @AndroidEntryPoint
 class TemperatureFragment : Fragment(R.layout.fragment_temperature) {
@@ -24,31 +26,47 @@ class TemperatureFragment : Fragment(R.layout.fragment_temperature) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewBinding.fiveDayRV.addItemDecoration(DayWeatherItemDecoration(requireContext(), R.dimen.day_weather_spacing, R.dimen.day_weather_top_spacing))
+        viewBinding.fiveDayRV.addItemDecoration(
+            DayWeatherItemDecoration(
+                requireContext(),
+                R.dimen.day_weather_spacing,
+                R.dimen.day_weather_top_spacing,
+                R.dimen.day_weather_bottom_spacing
+            )
+        )
         (arguments?.getSerializable("key") as ShortCity).let { city ->
             getDailyWeather(city.key, city.localizedName)
             getFiveDaysWeather(city.key)
-        }
 
+        }
 
 
     }
 
     private fun getDailyWeather(key: String, city: String) {
+
         viewModel.getDailyWeather(key)
         viewBinding.city.text = city
+        viewModel.isLoading.observe(viewLifecycleOwner) {
+            viewBinding.tempLoading.isVisible = it
+        }
         viewModel.weatherDaily.observe(viewLifecycleOwner, {
-            viewBinding.temperature.text =
-                "${it.dailyForecasts.firstOrNull()?.temperature?.maximum?.valueInC.toString()} °C"
-            viewBinding.status.text = it.dailyForecasts.firstOrNull()?.day?.iconPhrase
-            viewBinding.dateLocalTime.text =
-                it.headline.effectiveDate.toString(DateTimeFormat.forPattern("EEEE HH:mm a"))
-            if (it.dailyForecasts.firstOrNull()?.day?.precipitationType == "Rain") {
-                viewBinding.weatherStatusIcon.setImageResource(R.drawable.ic_rain)
-            } else {
-                viewBinding.weatherStatusIcon.setImageResource(R.drawable.ic_sunny)
+            if (it != null) {
+                viewBinding.temperature.text =
+                    "${it.dailyForecasts.firstOrNull()?.temperature?.maximum?.valueInC.toString()} °C"
+                viewBinding.status.text = it.dailyForecasts.firstOrNull()?.day?.iconPhrase
+                viewBinding.dateLocalTime.text =
+                    it.headline.effectiveDate.toString(DateTimeFormat.forPattern("EEEE HH:mm a"))
+                if (it.dailyForecasts.firstOrNull()?.day?.precipitationType == "Rain") {
+                    viewBinding.weatherStatusIcon.setImageResource(R.drawable.ic_rain)
+                } else {
+                    viewBinding.weatherStatusIcon.setImageResource(R.drawable.ic_sunny)
+                }
+            }else{
+                viewBinding.tvTempError.visibility = View.VISIBLE
             }
         })
+
 
     }
 
@@ -62,4 +80,5 @@ class TemperatureFragment : Fragment(R.layout.fragment_temperature) {
             fiveDaysRecyclerView.adapter = dailyAdapter
         })
     }
+
 }

@@ -24,17 +24,23 @@ class TemperatureViewModel @Inject constructor(
     private val _weatherFiveDay = MutableLiveData<ShortTemperature>()
     val weatherFiveDay get() = _weatherFiveDay.asLiveData()
 
-    fun getDailyWeather(key: String) {
+    fun getDailyWeather(key: String, indicator: MutableLiveData<Boolean> = _isLoading) {
+        indicator.value = true
         viewModelScope.launch {
             val temp = temperatureInteractor.getDaily(key)
-            _weatherDaily.value = temp
+            if (temp != null) {
+                _weatherDaily.value = temp
+                indicator.value = false
+            }
         }
     }
 
     fun getFiveDaiWeather(key: String) {
         viewModelScope.launch {
             val temp = temperatureInteractor.getFiveDay(key)
-            _weatherFiveDay.value = temp
+            if (temp != null) {
+                _weatherFiveDay.value = temp
+            }
         }
     }
 }

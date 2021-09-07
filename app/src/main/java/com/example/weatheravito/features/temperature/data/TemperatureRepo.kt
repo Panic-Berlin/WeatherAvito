@@ -17,4 +17,5 @@ class TemperatureRepo @Inject constructor(
     suspend fun getFiveDay(key: String) = withContext(Dispatchers.IO) {
         temperatureApi.getFiveDay(key).let { res -> temperaturesMapper.map(res) }
     }
+
 }
