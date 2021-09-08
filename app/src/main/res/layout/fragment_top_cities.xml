@@ -41,16 +41,23 @@
             android:layout_marginRight="10dp"/>
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/top_cities_RV"
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srl_top_cities"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        tools:listitem="@layout/top_cities_item"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="55dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/top_cities_RV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/top_cities_item"
+        />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/city_loading"
         android:layout_width="wrap_content"

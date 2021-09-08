@@ -18,18 +18,26 @@ class TopCitiesViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _cities = MutableLiveData<ViewState<List<ShortCity>>>()
+    val cities get() = _cities.asLiveData()
     private val _search = MutableLiveData<ViewState<List<ShortCity>>>()
+    val search get() = _search.asLiveData()
     private val _isLoading = MutableLiveData(true)
     val isLoading = _isLoading.asLiveData()
-    val cities get() = _cities.asLiveData()
-    val search get() = _search.asLiveData()
+    private val _isRefresh = MutableLiveData(false)
+    val isRefresh = _isRefresh.asLiveData()
+
+
 
     init {
-        _isLoading.value = true
+        loadTopCities(_isLoading)
+    }
+
+    private fun loadTopCities(indicator: MutableLiveData<Boolean>){
+        indicator.value = true
         viewModelScope.launch {
             val topCities = citiesInteractor.getCity()
             _cities.value = topCities.asViewState()
-            _isLoading.value = false
+            indicator.value = false
         }
     }
 
@@ -40,5 +48,9 @@ class TopCitiesViewModel @Inject constructor(
             _search.value = searchCity.asViewState()
             indicator.value = false
         }
+    }
+
+    fun onTopCitiesRefresh(){
+        loadTopCities(_isRefresh)
     }
 }

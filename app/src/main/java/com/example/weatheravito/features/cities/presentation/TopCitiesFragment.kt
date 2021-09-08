@@ -38,6 +38,10 @@ class TopCitiesFragment : Fragment(R.layout.fragment_top_cities) {
     }
 
     private fun init() {
+        viewBinding.srlTopCities.setOnRefreshListener { cityViewModel.onTopCitiesRefresh() }
+        cityViewModel.isRefresh.observe(viewLifecycleOwner){
+            viewBinding.srlTopCities.isRefreshing = it
+        }
         viewBinding.searchIV.setOnClickListener {
             if (viewBinding.cityToolbar.visibility == View.VISIBLE) {
                 viewBinding.cityToolbar.visibility = View.GONE
@@ -84,15 +88,16 @@ class TopCitiesFragment : Fragment(R.layout.fragment_top_cities) {
             }
         })
     }
-    private fun observeSearchCity(){
+
+    private fun observeSearchCity() {
         val searchRecyclerView = viewBinding.topCitiesRV
         searchRecyclerView.layoutManager = LinearLayoutManager(activity)
-        cityViewModel.isLoading.observe(viewLifecycleOwner){
+        cityViewModel.isLoading.observe(viewLifecycleOwner) {
             viewBinding.cityLoading.isVisible = it
         }
-        cityViewModel.search.observe(viewLifecycleOwner, {viewState ->
-            if (viewState is ViewState.Show){
-                val searchAdapter = CitiesAdapter(viewState.data){
+        cityViewModel.search.observe(viewLifecycleOwner, { viewState ->
+            if (viewState is ViewState.Show) {
+                val searchAdapter = CitiesAdapter(viewState.data) {
                     findNavController().navigate(
                         R.id.action_topCitiesFragment_to_temperatureFragment, bundleOf(
                             "key" to it
