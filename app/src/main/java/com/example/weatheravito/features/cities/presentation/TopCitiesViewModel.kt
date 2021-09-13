@@ -19,10 +19,13 @@ class TopCitiesViewModel @Inject constructor(
 
     private val _cities = MutableLiveData<ViewState<List<ShortCity>>>()
     val cities get() = _cities.asLiveData()
+
     private val _search = MutableLiveData<ViewState<List<ShortCity>>>()
     val search get() = _search.asLiveData()
+
     private val _isLoading = MutableLiveData(true)
     val isLoading = _isLoading.asLiveData()
+
     private val _isRefresh = MutableLiveData(false)
     val isRefresh = _isRefresh.asLiveData()
 

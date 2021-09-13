@@ -13,7 +13,8 @@ import com.example.weatheravito.features.temperature.domain.model.ShortTemperatu
 import org.joda.time.format.DateTimeFormat
 
 class FiveDaysAdapter(
-    val temperature: ShortTemperature
+    val temperature: ShortTemperature,
+    private val onDayClick:(day: DailyForecasts) -> Unit
 ) : RecyclerView.Adapter<FiveDaysAdapter.FiveDaysViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -26,6 +27,9 @@ class FiveDaysAdapter(
 
     override fun onBindViewHolder(holder: FiveDaysViewHolder, position: Int) {
         holder.bind(temperature.dailyForecasts[position])
+        holder.itemView.setOnClickListener {
+            onDayClick.invoke(temperature.dailyForecasts[position])
+        }
     }
 
     override fun getItemCount(): Int {

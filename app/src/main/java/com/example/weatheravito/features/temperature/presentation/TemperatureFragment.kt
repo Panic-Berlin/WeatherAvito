@@ -90,7 +90,23 @@ class TemperatureFragment : Fragment(R.layout.fragment_temperature) {
             viewBinding.fiveDayRV.isVisible = it is ViewState.Show
             viewBinding.days.isVisible = it is ViewState.Show
             if (it is ViewState.Show) {
-                val dailyAdapter = FiveDaysAdapter(it.data)
+                val dailyAdapter = FiveDaysAdapter(it.data){ it ->
+                    viewBinding.temperature.text = getString(
+                        R.string.temperature_in_c,
+
+                        it.temperature.maximum.valueInC
+                    )
+                    viewBinding.status.text = it.day.iconPhrase
+                    viewBinding.dateLocalTime.text =
+                        it.date.toString(
+                            DateTimeFormat.forPattern("EEEE HH:mm a")
+                        )
+                    if (it.day.precipitationType == "Rain") {
+                        viewBinding.weatherStatusIcon.setImageResource(R.drawable.ic_rain)
+                    } else {
+                        viewBinding.weatherStatusIcon.setImageResource(R.drawable.ic_sunny)
+                    }
+                }
                 fiveDaysRecyclerView.adapter = dailyAdapter
             }
         })
