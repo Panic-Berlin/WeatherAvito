@@ -30,6 +30,7 @@ class AppModel {
                     level = HttpLoggingInterceptor.Level.BODY
                 })
             }
+            .addInterceptor(AuthKeyInterceptor())
             .addNetworkInterceptor(CacheInterceptor())
             .cache(applicationContext.let {
                 val httpCacheDirectory = File(it.cacheDir, "http-cache")
