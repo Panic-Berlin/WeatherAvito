@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 class TopCityItemDecoration(
     context: Context,
     @DimenRes leftAndRightSpacing: Int,
-    @DimenRes topAndBottomSpacing: Int,
+    @DimenRes topAndBottomSpacing: Int
 ) : RecyclerView.ItemDecoration() {
 
     private val leftAndRightSpacing = context.resources.getDimensionPixelSize(leftAndRightSpacing)
