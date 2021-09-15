@@ -30,8 +30,8 @@ class TopCitiesFragment : Fragment(R.layout.fragment_top_cities) {
         viewBinding.topCitiesRV.addItemDecoration(
             TopCityItemDecoration(
                 requireContext(),
-                R.dimen.city_left_and_right_margin,
-                R.dimen.city_top_and_bottom_margin
+                R.dimen.medium_margin,
+                R.dimen.medium_margin
             )
         )
 

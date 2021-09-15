@@ -5,34 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/city_gradient_background"
-    android:padding="@dimen/city_item_padding">
+    android:padding="@dimen/small_margin">
 
 
     <TextView
         android:id="@+id/country"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginTop="@dimen/small_margin"
         android:fontFamily="@font/lato"
         android:textColor="@color/lite_white"
-        android:textSize="18sp"
+        android:textSize="@dimen/medium_text_size"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Country" />
+        tools:text="@string/country" />
 
     <TextView
         android:id="@+id/city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:paddingBottom="5dp"
+        android:layout_marginTop="@dimen/small_margin"
+        android:paddingBottom="@dimen/small_margin"
         android:textColor="@color/lite_white"
-        android:textSize="18sp"
+        android:textSize="@dimen/medium_text_size"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="@id/country"
         app:layout_constraintTop_toBottomOf="@id/country"
-        tools:text="City" />
+        tools:text="@string/city" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

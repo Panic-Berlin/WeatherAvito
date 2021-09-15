@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="day_weather_spacing">14dp</dimen>
-    <dimen name="day_weather_top_spacing">4dp</dimen>
+    <dimen name="margin_4dp">4dp</dimen>
     <dimen name="day_weather_bottom_spacing">18dp</dimen>
     <dimen name="margin_big">16dp</dimen>
-    <dimen name="city_item_padding">5dp</dimen>
-    <dimen name="city_top_and_bottom_margin">10dp</dimen>
-    <dimen name="city_left_and_right_margin">10dp</dimen>
+    <dimen name="small_margin">6dp</dimen>
+    <dimen name="medium_text_size">18sp</dimen>
+    <dimen name="small_text_size">16sp</dimen>
+    <dimen name="medium_margin">10dp</dimen>
+    <dimen name="ic_search_size">36dp</dimen>
 </resources>

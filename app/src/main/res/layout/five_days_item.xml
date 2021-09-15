@@ -36,7 +36,7 @@
         android:id="@+id/dayMax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="6dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/lato"
         android:textColor="@color/lite_black"

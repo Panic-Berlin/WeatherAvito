@@ -32,7 +32,7 @@ class TemperatureFragment : Fragment(R.layout.fragment_temperature) {
             DayWeatherItemDecoration(
                 requireContext(),
                 R.dimen.day_weather_spacing,
-                R.dimen.day_weather_top_spacing,
+                R.dimen.margin_4dp,
                 R.dimen.day_weather_bottom_spacing
             )
         )
