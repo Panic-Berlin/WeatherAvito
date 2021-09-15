@@ -39,17 +39,19 @@ class TopCitiesFragment : Fragment(R.layout.fragment_top_cities) {
 
     private fun init() {
         viewBinding.srlTopCities.setOnRefreshListener { cityViewModel.onTopCitiesRefresh() }
-        cityViewModel.isRefresh.observe(viewLifecycleOwner){
+        cityViewModel.isRefresh.observe(viewLifecycleOwner) {
             viewBinding.srlTopCities.isRefreshing = it
         }
         viewBinding.searchIV.setOnClickListener {
-            if (viewBinding.cityToolbar.visibility == View.VISIBLE) {
-                viewBinding.cityToolbar.visibility = View.GONE
-                viewBinding.searchToolBar.visibility = View.VISIBLE
-            } else {
-                viewBinding.cityToolbar.visibility = View.VISIBLE
-                viewBinding.searchToolBar.visibility = View.GONE
-                viewBinding.cityToolbar.visibility = View.VISIBLE
+            when (viewBinding.cityToolbar.isVisible) {
+                true -> {
+                    viewBinding.cityToolbar.isVisible = false
+                    viewBinding.searchToolBar.isVisible = true
+                }
+                false -> {
+                    viewBinding.cityToolbar.isVisible = true
+                    viewBinding.searchToolBar.isVisible = false
+                }
             }
         }
 
@@ -62,8 +64,8 @@ class TopCitiesFragment : Fragment(R.layout.fragment_top_cities) {
 
         viewBinding.searchToolBar.setOnClickListener {
             viewBinding.etSearch.text.clear()
-            viewBinding.searchToolBar.visibility = View.GONE
-            viewBinding.cityToolbar.visibility = View.VISIBLE
+            viewBinding.searchToolBar.isVisible = false
+            viewBinding.cityToolbar.isVisible = true
             observeTopCities()
         }
     }
@@ -96,6 +98,7 @@ class TopCitiesFragment : Fragment(R.layout.fragment_top_cities) {
             viewBinding.cityLoading.isVisible = it
         }
         cityViewModel.search.observe(viewLifecycleOwner, { viewState ->
+            viewBinding.tvCityError.isVisible = viewState !is ViewState.Show
             if (viewState is ViewState.Show) {
                 val searchAdapter = CitiesAdapter(viewState.data) {
                     findNavController().navigate(
