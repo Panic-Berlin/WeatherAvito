@@ -5,7 +5,9 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-
+/**
+ * Make in october 2021 by Magomedov Arslan
+ */
 interface TemperatureApi {
 
     @GET("forecasts/v1/daily/1day/{key}?language=ru-ru")

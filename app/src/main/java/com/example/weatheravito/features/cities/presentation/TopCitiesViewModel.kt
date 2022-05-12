@@ -11,7 +11,9 @@ import com.example.weatheravito.utils.asViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
+/**
+ * Make in october 2021 by Magomedov Arslan
+ */
 @HiltViewModel
 class TopCitiesViewModel @Inject constructor(
     private val citiesInteractor: CitiesInteractor

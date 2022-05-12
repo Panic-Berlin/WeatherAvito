@@ -12,7 +12,9 @@ import com.example.weatheravito.features.temperature.domain.model.DailyForecasts
 import com.example.weatheravito.features.temperature.domain.model.ShortTemperature
 import org.joda.time.format.DateTimeFormat
 
-
+/**
+ * Make in october 2021 by Magomedov Arslan
+ */
 class FiveDaysAdapter(
     val temperature: ShortTemperature,
     private val onDayClick: (day: DailyForecasts) -> Unit

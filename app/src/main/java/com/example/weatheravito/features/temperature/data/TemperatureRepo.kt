@@ -5,7 +5,9 @@ import com.example.weatheravito.features.temperature.data.model.mapper.Temperatu
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
-
+/**
+ * Make in october 2021 by Magomedov Arslan
+ */
 class TemperatureRepo @Inject constructor(
     private val temperatureApi: TemperatureApi,
     private val temperaturesMapper: TemperaturesMapper

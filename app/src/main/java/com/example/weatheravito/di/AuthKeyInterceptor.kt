@@ -2,7 +2,9 @@ package com.example.weatheravito.di
 
 import okhttp3.Interceptor
 import okhttp3.Response
-
+/**
+ * Make in october 2021 by Magomedov Arslan
+ */
 private const val API_KEY = "w5vIvuGCGaORlx5myVMEkcJxkBAGBdjy"
 
 class AuthKeyInterceptor : Interceptor {

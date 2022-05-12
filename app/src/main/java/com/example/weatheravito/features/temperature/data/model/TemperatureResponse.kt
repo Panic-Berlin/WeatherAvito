@@ -4,7 +4,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import org.joda.time.DateTime
 import org.joda.time.LocalDateTime
-
+/**
+ * Make in october 2021 by Magomedov Arslan
+ */
 @JsonClass(generateAdapter = true)
 data class TemperatureResponse(
     @Json(name = "Headline")

@@ -6,7 +6,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
-
+/**
+ * Make in october 2021 by Magomedov Arslan
+ */
 @InstallIn(SingletonComponent::class)
 @Module
 class TemperatureFeaturesModule {

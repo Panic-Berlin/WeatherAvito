@@ -1,12 +1,11 @@
 package com.example.weatheravito.features.temperature.domain
 
-import android.util.Log
 import com.example.weatheravito.features.temperature.data.TemperatureRepo
-import com.example.weatheravito.features.temperature.domain.model.ShortTemperature
 import com.example.weatheravito.utils.safeRequest
-import retrofit2.HttpException
 import javax.inject.Inject
-
+/**
+ * Make in october 2021 by Magomedov Arslan
+ */
 class TemperatureInteractor @Inject constructor(
     private val temperatureRepo: TemperatureRepo
 ) {

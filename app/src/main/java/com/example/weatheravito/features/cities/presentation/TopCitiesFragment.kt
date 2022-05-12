@@ -15,7 +15,9 @@ import com.example.weatheravito.databinding.FragmentTopCitiesBinding
 import com.example.weatheravito.features.cities.presentation.adapter.CitiesAdapter
 import com.example.weatheravito.utils.ViewState
 import dagger.hilt.android.AndroidEntryPoint
-
+/**
+ * Make in october 2021 by Magomedov Arslan
+ */
 @AndroidEntryPoint
 class TopCitiesFragment : Fragment(R.layout.fragment_top_cities) {
 

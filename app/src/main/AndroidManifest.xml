@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.weatheravito">
 
+    <!-->
+    Make in october 2021 by Magomedov Arslan
+    <!-->
+
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application

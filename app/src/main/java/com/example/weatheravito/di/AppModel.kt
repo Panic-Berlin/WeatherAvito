@@ -17,6 +17,9 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.File
 import javax.inject.Singleton
 
+/**
+ * Make in october 2021 by Magomedov Arslan
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 class AppModel {

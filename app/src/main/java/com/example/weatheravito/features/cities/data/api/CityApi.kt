@@ -12,9 +12,7 @@ interface CityApi {
     ): List<CityRes>
 
     @GET("locations/v1/topcities/{top}?language=ru-ru")
-    suspend fun getTopCities(
-        @Path("top") top: String = "50"
-    ): List<CityRes>
+    suspend fun getTopCities(@Path("top") top: String = "50"): List<CityRes>
 
 
 }

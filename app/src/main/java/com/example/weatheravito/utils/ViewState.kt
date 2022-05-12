@@ -1,5 +1,7 @@
 package com.example.weatheravito.utils
-
+/**
+ * Make in october 2021 by Magomedov Arslan
+ */
 sealed class ViewState<out T> {
     data class Show<T>(val data: T) : ViewState<T>()
     object Empty : ViewState<Nothing>()
